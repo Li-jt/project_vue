@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import './common/base.scss'
+import './common/base.css'
 import 'animate.css';
 import router from './router'
 import storage from '@/utils/storage/storage.js';
