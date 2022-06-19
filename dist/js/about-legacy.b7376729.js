@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkproxy_vue"]=self["webpackChunkproxy_vue"]||[]).push([[443],{138:function(e,u,n){n.r(u),n.d(u,{default:function(){return a}});var t=function(){var e=this,u=e.$createElement,n=e._self._c||u;return n("h1",[e._v("About")])},r=[],l={name:"About"},c=l,o=n(1001),s=(0,o.Z)(c,t,r,!1,null,null,null),a=s.exports}}]);
+//# sourceMappingURL=about-legacy.b7376729.js.map
