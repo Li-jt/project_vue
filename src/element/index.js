@@ -2,14 +2,16 @@ import {
   Message,
   Button,
   Divider,
-  Input
+  Input,
+  Icon
 } from 'element-ui'
 
 const coms = [
   Message,
   Button,
   Divider,
-  Input
+  Input,
+  Icon
 ]
 
 export default {

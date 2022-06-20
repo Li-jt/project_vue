@@ -1,5 +1,5 @@
 <template>
-  <div class="bg">
+  <div class="bg" ref="canvasw">
     <canvas class="canvas" ref="canvas"></canvas>
     <img ref="img" src="@/static/images/silhouette.png" alt="" v-show="false">
   </div>
@@ -8,6 +8,12 @@
 <script>
 import { getRandom } from '@/utils/utils'
 export default {
+  props: {
+    leftWidth: {
+      type: Number,
+      default: 0
+    }
+  },
   data() {
     return {
       ctx: null,
@@ -153,7 +159,8 @@ export default {
     },
     //设置canvas宽高
     setWH() {
-      this.$refs.canvas.width = window.innerWidth
+      this.$refs.canvas.width = window.innerWidth - this.leftWidth
+      // this.$refs.canvas.width = this.$refs.canvasw.clientWidth
       this.$refs.canvas.height = this.height
     },
   }
@@ -162,13 +169,7 @@ export default {
 
 <style lang="scss" scoper>
 .bg {
-  // width: 100vw;
+  width: 100%;
   // height: 100vh;
-}
-
-.box {
-  width: 100px;
-  height: 100px;
-  background: rgba(0, 0, 80, 1);
 }
 </style>
