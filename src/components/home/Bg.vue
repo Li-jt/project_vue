@@ -1,6 +1,7 @@
 <template>
   <div class="bg">
     <canvas class="canvas" ref="canvas"></canvas>
+    <img ref="img" src="@/static/images/silhouette.png" alt="" v-show="false">
   </div>
 </template>
 
@@ -48,7 +49,7 @@ export default {
       this.ctx = this.$refs.canvas.getContext('2d');
       this.palette = this.colorPalette();
       this.img = new Image();
-      this.img.src = '/images/silhouette.png';
+      this.img.src = this.$refs.img.src;
       this.start = Date.now();
       this.time = Date.now();
       this.offset = Math.floor((Date.now() - this.start) / (3300 / 256)) % 256;
