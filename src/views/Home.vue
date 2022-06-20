@@ -1,20 +1,20 @@
 <template>
   <div>
-    <jt-bg />
-    <div class="home">
+    <!-- <div class="home">
       <div></div>
-    </div>
+    </div> -->
+    <Bg />
   </div>
 </template>
 
 <script>
-import JtBg from '@/components/JtBg'
+import Bg from '@/components/home/Bg'
 export default {
   name: 'Home',
-  components: { JtBg },
+  components: { Bg },
   data() {
     return {
-      
+
     }
   },
   mounted() {
