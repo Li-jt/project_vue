@@ -3,7 +3,9 @@ import {
   Button,
   Divider,
   Input,
-  Icon
+  Icon,
+  Tooltip,
+  Col,
 } from 'element-ui'
 
 const coms = [
@@ -11,7 +13,9 @@ const coms = [
   Button,
   Divider,
   Input,
-  Icon
+  Icon,
+  Tooltip,
+  Col
 ]
 
 export default {

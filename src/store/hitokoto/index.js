@@ -16,8 +16,7 @@ export default {
   actions: {
     [type.GETHITOKOTO](context) {
       getHitokoto().then(res => {
-        context.commit('getHitokoto', res.hitokoto);
-        // console.log(res);
+        context.commit(type.GETHITOKOTO, res);
       })
     }
   }

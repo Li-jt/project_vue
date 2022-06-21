@@ -2,7 +2,7 @@
   <div class="box">
     <div class="cont">
       <ul class="list">
-        <li class="item" v-for="(item, i) in 5" :key="item" @click.stop="shwoList(i)">
+        <li class="item" v-for="(item, i) in 5" :key="item" @click.stop="shwoList(i), goAnchor(`#app_${i}`)">
           <div class="show">
             <div>
               <i class="el-icon-edit"></i>
@@ -24,12 +24,17 @@
           </transition>
         </li>
       </ul>
+      <div class="canvasfont" @click.stop="">
+        <CanvasFont :width='30' :height='30' :fontSize="20" :fontWeight="600" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import CanvasFont from '../CanvasFont'
 export default {
+  components: { CanvasFont },
   props: {
     msg: {
       type: Number,
@@ -43,6 +48,11 @@ export default {
     }
   },
   methods: {
+    goAnchor(selector) {
+      document.querySelector(selector).scrollIntoView({
+        behavior: "smooth"
+      })
+    },
     shwoList(i, v) {
       if (v !== 'home') {
         this.$emit('zoom', 'left');
@@ -79,6 +89,10 @@ export default {
 
   .cont {
     width: 170px;
+    height: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     // height: 100vh;
     // background: chartreuse;
 
@@ -120,6 +134,17 @@ export default {
     .edit {
       font-size: 30px;
       color: #ccc;
+    }
+
+    .canvasfont {
+      width: 30px;
+      height: 30px;
+      background-color: #696969;
+      cursor: pointer;
+    }
+
+    .canvasfont:hover {
+      box-shadow: 0 0 5px #fff inset;
     }
   }
 }

@@ -1,3 +1,4 @@
+//登录页面背景配置
 export const bgColor = [{
   timeInterval: {
     start: 7,
@@ -22,4 +23,12 @@ export const bgColor = [{
     end: 0,
   },
   color: ['#002661', '#123597']
-}]
+}];
+
+//首页配置
+export const homeConfig = {
+  //左侧边栏配置
+  leftSidebar: {
+    isUnfold: false, //初始化时侧边栏是否打开
+  }
+}
