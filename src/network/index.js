@@ -14,7 +14,7 @@ if (process.env.NODE_ENV == 'development') {
 } else if (process.env.NODE_ENV == 'debug') {
   axios.defaults.baseURL = '';
 } else if (process.env.NODE_ENV == 'production') {
-  axios.defaults.baseURL = 'http://api.123dailu.com/';
+  axios.defaults.baseURL = 'https://v1.hitokoto.cn';
 }
 
 // 请求超时时间
