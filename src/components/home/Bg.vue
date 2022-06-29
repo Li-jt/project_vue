@@ -41,11 +41,9 @@ export default {
     }
   },
   mounted() {
-    //监听浏览器窗口变化
     this.init();
   },
   beforeDestroy() {
-    //移除监听浏览器窗口变化
   },
   methods: {
     init() {
@@ -58,7 +56,7 @@ export default {
       this.img.src = this.$refs.img.src;
       this.start = Date.now();
       this.time = Date.now();
-      this.offset = Math.floor((Date.now() - this.start) / (3300 / 256)) % 256;
+      this.offset = Math.floor((Date.now() - this.start) / (33000 / 256)) % 256;
       requestAnimationFrame(this.frame);
       //预先生成30个星星，防止初始化空屏
       for (let i = 0; i < 30; i++) {

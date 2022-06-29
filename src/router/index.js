@@ -27,10 +27,31 @@ const routes = [{
   meta: {
     title: '关于'
   },
+}, {
+  path: '/chat',
+  name: 'chat',
+  component: () => import( /* webpackChunkName: "about" */ '../views/Chat.vue'),
+  meta: {
+    title: '聊天室'
+  },
+}, {
+  path: '/picture',
+  name: 'picture',
+  component: () => import( /* webpackChunkName: "about" */ '../views/Picture.vue'),
+  meta: {
+    title: '图片'
+  },
+}, {
+  path: '/game/picture/climbingTower',
+  name: 'climbingTower',
+  component: () => import( /* webpackChunkName: "about" */ '../views/game/climbingTower/Index.vue'),
+  meta: {
+    title: '爬塔游戏'
+  },
 }]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })

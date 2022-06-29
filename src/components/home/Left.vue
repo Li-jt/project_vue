@@ -2,11 +2,11 @@
   <div class="box">
     <div class="cont">
       <ul class="list">
-        <li class="item" v-for="(item, i) in 5" :key="item" @click.stop="shwoList(i), goAnchor(`#app_${i}`)">
+        <li class="item" v-for="(item, i) in list" :key="i" @click.stop="shwoList(i), goAnchor(`#app_${i}`)">
           <div class="show">
             <div>
               <i class="el-icon-edit"></i>
-              <span>在线记录</span>
+              <span>{{ item.title }}</span>
             </div>
             <span :style="i == index ? `transform: rotate(${rotateDeg}deg);` : ''">
               <svg class="icon" width="10px" height="10.00" viewBox="0 0 1024 1024" version="1.1"
@@ -19,7 +19,7 @@
           <transition enter-active-class="collapse" leave-active-class="collapse" @enter="enter"
             @after-enter="afterEnter" @leave="leave" @after-leave="afterLeave">
             <ul v-show="i == index">
-              <li v-for="item in 5" :key="item">在线记录</li>
+              <li v-for="(t, i) in item.list" :key="i">{{t.name}}</li>
             </ul>
           </transition>
         </li>
@@ -33,6 +33,7 @@
 
 <script>
 import CanvasFont from '../CanvasFont'
+import { list } from '@/mock/home'
 export default {
   components: { CanvasFont },
   props: {
@@ -44,7 +45,8 @@ export default {
   data() {
     return {
       index: -1,
-      rotateDeg: 0
+      rotateDeg: 0,
+      list,
     }
   },
   methods: {

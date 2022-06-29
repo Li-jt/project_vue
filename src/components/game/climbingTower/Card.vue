@@ -1,26 +1,61 @@
 <template>
-  <div id='' class=''>
+  <div class="card" :class="{ cardSelect: selectCard === card }" @click="selected" @mousemove="mousemove"
+    @mousedown="mousedown">
+    <p class="energy">{{ card.energy }}</p>
+    <p class="number">{{ card.number }}</p>
+    <p class="describe">{{ card.describe }}</p>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex';
+import { SETSELECTCARD } from '@/store/game/climbingTower/types'
+import { types } from '@/common/game/card'
 export default {
   // 组件名称
-  name: 'About',
+  name: 'Card',
   // 组件参数 接收来自父组件的数据
-  props: {},
+  props: {
+    card: {
+      type: Object
+    },
+    index: {
+      type: Number,
+      default: 0
+    }
+  },
   // 局部注册的组件
   components: {},
   // 组件状态值
   data() {
-    return {}
+    return {
+      isOver: false,
+      isSelect: false
+    }
   },
   // 计算属性
-  computed: {},
+  computed: {
+    ...mapState('climbingTower', ['selectCard']),
+  },
   // 侦听器
   watch: {},
   // 组件方法
-  methods: {},
+  methods: {
+    ...mapMutations('climbingTower', [SETSELECTCARD]),
+    selected() {
+      // this.isSelect = true;
+    },
+    //鼠标移动
+    mousemove(e) {
+      if (!this.isSelect) return;
+      console.log(e);
+      // this.isOver = true;
+    },
+    //鼠标按下
+    mousedown() {
+      this[SETSELECTCARD](this.index);
+    },
+  },
   // 以下是生命周期钩子   注：没用到的钩子请自行删除
   /**
   * 在实例初始化之后，组件属性计算之前，如data属性等
@@ -83,5 +118,49 @@ export default {
 <!--使用了scoped属性之后，当前组件的style样式将不会渗透到子组件中，-->
 <!--然而子组件的根节点元素会同时被设置了scoped的父css样式和设置了scoped的子css样式影响，-->
 <!--这么设计的目的是父组件可以对子组件根元素进行布局。-->
-<style scoped>
+<style lang="scss" scoped>
+.card {
+  width: 150px;
+  height: 250px;
+  background-color: aqua;
+  padding: 10px;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+  margin: 0 5px;
+
+  .number {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+  }
+
+  .describe {
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+  .energy {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: aquamarine;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.cardSelect,
+.card:hover {
+  box-shadow: 0 0 10px #fff;
+}
 </style>

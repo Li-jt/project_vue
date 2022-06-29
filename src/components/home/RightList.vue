@@ -1,22 +1,17 @@
 <template>
   <div>
-    <div class="app" :id="`app_${i}`" v-for="(t, i) in 10">
-      <p class="title"><i class="el-icon-edit"></i><span>常用功能</span></p>
-      <!-- <ul class="list">
-        <li class="item" v-for="(item, i) in 10" :key="item">
-          
-        </li>
-      </ul> -->
+    <div class="app" :id="`app_${i}`" v-for="(t, i) in list" :key="i">
+      <p class="title"><i class="el-icon-edit"></i><span>{{ t.title }}</span></p>
       <div class="list">
-        <el-col :xs="12" :sm="8" :md="8" :lg="4" :xl="4" v-for="(item, index) in 10" :key="item">
+        <el-col :xs="12" :sm="8" :md="8" :lg="4" :xl="4" v-for="(item, index) in t.list" :key="index">
           <el-tooltip class="item" effect="dark" content="常用工具" placement="bottom">
-            <div class="item">
+            <div class="item" @click="skip(item)">
               <div class="cont">
                 <div class="left">
                   <div class="img">
-                    <CanvasFont text="工具" :fontSize="20" color="#A0522D"/>
+                    <CanvasFont :text="item.icon" :fontSize="20" color="#A0522D" />
                   </div>
-                  <p class="name">常用工具</p>
+                  <p class="name">{{ item.name }}</p>
                 </div>
                 <i class="el-icon-arrow-right"></i>
               </div>
@@ -30,8 +25,24 @@
 
 <script>
 import CanvasFont from '@/components/CanvasFont'
+import { list } from '@/mock/home'
 export default {
-  components: { CanvasFont }
+  components: { CanvasFont },
+  data() {
+    return {
+      list,
+    }
+  },
+  methods: {
+    skip(v) {
+      if (v.url) {
+        this.$router.push({
+          name: v.url
+        });
+      }
+      console.log(v);
+    }
+  }
 }
 </script>
 
