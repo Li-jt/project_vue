@@ -108,7 +108,7 @@ export default {
       state.enemys.map((item, i) => {
         item.defense = 0;
         if (item.state.type === enemyType[0].type) {
-          //攻击
+          //攻击 666
           let num = item.state.number - state.player.defense;
           if (num > 0) {
             state.player.defense = 0;
