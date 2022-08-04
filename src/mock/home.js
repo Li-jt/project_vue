@@ -12,6 +12,12 @@ export const list = [{
       icon: '图',
       id: 1,
       url: 'picture'
+    },
+    {
+      name: '视频编辑',
+      icon: '视',
+      id: 1,
+      url: 'videoEditing'
     }
   ]
 }, {
