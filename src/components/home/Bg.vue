@@ -1,7 +1,12 @@
 <template>
-  <div class="bg" ref="canvasw">
-    <canvas class="canvas" ref="canvas"></canvas>
-    <img ref="img" src="@/static/images/silhouette.png" alt="" v-show="false">
+  <div class="bg"
+       ref="canvasw">
+    <canvas class="canvas"
+            ref="canvas"></canvas>
+    <img ref="img"
+         src="@/static/images/silhouette.png"
+         alt=""
+         v-show="false">
   </div>
 </template>
 
@@ -14,7 +19,7 @@ export default {
       default: 0
     }
   },
-  data() {
+  data () {
     return {
       ctx: null,
       height: 300,
@@ -40,13 +45,13 @@ export default {
       img: null
     }
   },
-  mounted() {
+  mounted () {
     this.init();
   },
-  beforeDestroy() {
+  beforeDestroy () {
   },
   methods: {
-    init() {
+    init () {
       //初始化
       //取得2d上下文对象(画笔)
       this.setWH();
@@ -70,14 +75,14 @@ export default {
         })
       }
     },
-    frame() {
+    frame () {
       this.setWH();
       this.draw();
       this.createStar();
       this.drawImg();
       requestAnimationFrame(this.frame);
     },
-    colorPalette() {
+    colorPalette () {
       let grad = this.ctx.createLinearGradient(0, 0, 0, this.height)
       this.colors.forEach((item) => {
         grad.addColorStop(item[0], item[1])
@@ -86,7 +91,7 @@ export default {
       this.ctx.fillRect(0, 0, this.$refs.canvas.width, this.height);
       return this.ctx.getImageData(0, 0, 1, 256).data;
     },
-    draw() {
+    draw () {
       if ((Date.now() - this.time) % 20 == 0) {
         if (this.stop >= 0.1) this.stopNum = -0.01;
         if (this.stop <= 0.01) this.stopNum = 0.01;
@@ -123,7 +128,7 @@ export default {
       this.drawStar();
     },
     // 渲染星星
-    drawStar() {
+    drawStar () {
       this.stars.forEach((item, i) => {
         if (item.y <= -10) {
           this.stars.splice(i, 1);
@@ -139,7 +144,7 @@ export default {
       })
     },
     // 创建星星
-    createStar() {
+    createStar () {
       if (Date.now() - this.starTime >= 1000 || this.starTime == 0) {
         this.starTime = Date.now();
         this.stars.push({
@@ -152,11 +157,11 @@ export default {
         });
       }
     },
-    drawImg() {
+    drawImg () {
       this.ctx.drawImage(this.img, this.$refs.canvas.width / 2 - 50, this.height - 130, 100, 200);
     },
     //设置canvas宽高
-    setWH() {
+    setWH () {
       this.$refs.canvas.width = window.innerWidth - this.leftWidth
       // this.$refs.canvas.width = this.$refs.canvasw.clientWidth
       this.$refs.canvas.height = this.height

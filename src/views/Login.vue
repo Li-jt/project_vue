@@ -1,3 +1,11 @@
+<!--
+ * @Author: lijt
+ * @Date: 2022-06-18 19:01:09
+ * @LastEditors: lijt
+ * @LastEditTime: 2022-09-01 15:01:53
+ * @FilePath: \proxy_vue\src\views\Login.vue
+ * @Description: 登录
+-->
 <template>
   <div>
     <jt-bg />
@@ -5,11 +13,14 @@
       <p class="title">登录</p>
       <div class="cont">
         <div class="username">
-          <ui-input v-model="username" placeholder='请输入账户' />
+          <ui-input v-model="username"
+                    placeholder='请输入账户' />
           <!-- <el-input v-model="username" placeholder="请输入账户"></el-input> -->
         </div>
         <div class="password">
-          <ui-input type="password" v-model="password" placeholder='请输入密码' />
+          <ui-input type="password"
+                    v-model="password"
+                    placeholder='请输入密码' />
           <!-- <el-input type="password" v-model="password" placeholder="请输入密码" :show-password="true"></el-input> -->
         </div>
         <div class="login_button">
@@ -30,7 +41,7 @@ import { mapMutations } from 'vuex'
 export default {
   name: 'Login',
   components: { JtBg, UiInput, UiButton },
-  data() {
+  data () {
     return {
       username: '',
       password: '',
@@ -38,7 +49,7 @@ export default {
   },
   methods: {
     ...mapMutations('userOptions', [userType.SETTOKEN]),
-    login() {
+    login () {
       this[userType.SETTOKEN]('uuid-123');
       this.$router.replace({
         name: 'home'

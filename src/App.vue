@@ -1,3 +1,11 @@
+<!--
+ * @Author: lijt
+ * @Date: 2022-06-18 18:23:26
+ * @LastEditors: lijt
+ * @LastEditTime: 2022-10-10 15:50:33
+ * @FilePath: \proxy_vue\src\App.vue
+ * @Description: 
+-->
 <template>
   <router-view></router-view>
 </template>
@@ -9,6 +17,8 @@ export default {
 </script>
 
 <style>
+@import "@arcgis/core/assets/esri/themes/dark/main.css";
+
 /* // 滚动条宽度 */
 ::-webkit-scrollbar {
   width: 5px;

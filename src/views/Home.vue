@@ -1,11 +1,22 @@
 <template>
   <div class="home">
-    <div class="left" ref="left" @click="zoom" :style="`width:${leftWidth}px`">
-      <Left @zoom='zoom' ref="child" />
+    <div class="left"
+         ref="left"
+         @click="zoom"
+         :style="`width:${leftWidth}px`">
+      <Left @zoom='zoom'
+            ref="child" />
     </div>
-    <div class="right" :style="`margin-left:${leftWidth}px`">
-      <el-tooltip class="item" effect="dark" content="点击百度一下" placement="bottom">
-        <div class="yiyan" @click="open" v-show="msg">
+    <div class="right"
+         :style="`margin-left:${leftWidth}px`">
+      <el-tooltip v-if="msg.hitokoto"
+                  class="item"
+                  effect="dark"
+                  content="点击百度一下"
+                  placement="bottom">
+        <div class="yiyan"
+             @click="open"
+             v-show="msg">
           <p class="text">{{ msg.hitokoto }}</p>
           <p class="name">—— {{ msg.from_who }} 《{{ msg.from }}》</p>
         </div>
@@ -27,7 +38,7 @@ import { GETHITOKOTO } from '@/store/hitokoto/types'
 export default {
   name: 'Home',
   components: { Bg, Left, RightList },
-  data() {
+  data () {
     return {
       leftWidth: 0, //控制左侧边栏：50为关闭，300为打开
       s: false,//控制左侧边栏：false为关闭，true为打开
@@ -38,7 +49,7 @@ export default {
   computed: {
     ...mapState('hitokotoOptions', ['msg'])
   },
-  created() {
+  created () {
     //控制左侧边栏开关
     if (homeConfig.leftSidebar.isUnfold) {
       this.leftWidth = 300;
@@ -49,7 +60,7 @@ export default {
     }
     this[GETHITOKOTO]();
   },
-  mounted() {
+  mounted () {
     this.getToken();
     this.$nextTick(() => {
       this.leftWidth = this.$refs.left.clientWidth;
@@ -57,12 +68,12 @@ export default {
     })
     window.addEventListener('keydown', this.keydown)
   },
-  destroyed() {
+  destroyed () {
     window.removeEventListener('keydown', this.keydown)
   },
   methods: {
     ...mapActions('hitokotoOptions', [GETHITOKOTO]),
-    getToken() {
+    getToken () {
       let token = this.$store.state.userOptions.token;
       if (token === '') {
         this.$router.push({
@@ -70,10 +81,10 @@ export default {
         });
       }
     },
-    open() {
+    open () {
       window.open(`https://www.baidu.com/s?wd=${this.msg.hitokoto}`)
     },
-    zoom(v) {
+    zoom (v) {
       if (v === 'left') {
         if (this.leftWidth >= 200) return;
       }
@@ -105,7 +116,7 @@ export default {
 
       setTimeout(this.zoom, 10)
     },
-    keydown(event) {
+    keydown (event) {
       event.preventDefault();
       this.isKeydown = true;
       if (event.keyCode === 32) {
@@ -134,7 +145,7 @@ export default {
   .left {
     width: 200px;
     height: 100vh;
-    background: #2D2E30;
+    background: #2d2e30;
     overflow: hidden;
     padding: 10px;
     box-sizing: border-box;
@@ -145,7 +156,7 @@ export default {
 
   .right {
     flex: 1;
-    background-color: #1C1D1F;
+    background-color: #1c1d1f;
     margin-left: 200px;
     position: relative;
 

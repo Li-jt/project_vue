@@ -1,3 +1,11 @@
+<!--
+ * @Author: lijt
+ * @Date: 2022-06-18 19:00:05
+ * @LastEditors: lijt
+ * @LastEditTime: 2022-08-25 15:23:23
+ * @FilePath: \proxy_vue\src\components\JtBg.vue
+ * @Description: 
+-->
 <template>
   <div class="bg" :style="style">
     <!-- 月亮 -->

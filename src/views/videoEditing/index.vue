@@ -1,39 +1,66 @@
 <!--
  * @Author: lijt 15226153903@163.com
  * @Date: 2022-08-04 12:25:15
- * @LastEditors: lijt 15226153903@163.com
- * @LastEditTime: 2022-08-06 22:56:57
- * @FilePath: \proxy_vue\src\views\game\videoEditing\index.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @LastEditors: lijt
+ * @LastEditTime: 2022-09-01 15:02:26
+ * @FilePath: \proxy_vue\src\views\videoEditing\index.vue
+ * @Description: 序列帧生成视频
 -->
 <template>
   <div class="app">
-    <canvas v-if="!video" ref="cas" :width="width / 2" :height="height / 2" class="canvas"></canvas>
-    <video v-else autoplay controls :src="video"></video>
+    <canvas v-if="!video"
+            ref="cas"
+            :width="width / 2"
+            :height="height / 2"
+            class="canvas"></canvas>
+    <video v-else
+           autoplay
+           controls
+           :src="video"></video>
     <div class="app_cont">
-      <div class="timerShaft" @drop="fileDrop($event)" @dragover="fileDragover($event)" style="height: 100px;"
-        v-if="fileList.length === 0">
+      <div class="timerShaft"
+           @drop="fileDrop($event)"
+           @dragover="fileDragover($event)"
+           style="height: 100px;"
+           v-if="fileList.length === 0">
         <div class="file_ps">拖入图片或点击选择图片序列帧</div>
-        <input class="file" type="file" multiple="multiple" accept="image/*"
-          @change="previewHandle($event.target.files)" />
+        <input class="file"
+               type="file"
+               multiple="multiple"
+               accept="image/*"
+               @change="previewHandle($event.target.files)" />
       </div>
-      <div class="timerShaft" v-else>
-        <div draggable="true" class="border" :class="{ 'select_img': index === i }" @dragenter="dragenter($event, i)"
-          @dragover.prevent @click="setFrames(i)" v-for="(item, i) in fileList" :key="i">
-          <img @dragstart="dragstart($event, i)" class="img" :src="item" alt="">
+      <div class="timerShaft"
+           v-else>
+        <div draggable="true"
+             class="border"
+             :class="{ 'select_img': index === i }"
+             @dragenter="dragenter($event, i)"
+             @dragover.prevent
+             @click="setFrames(i)"
+             v-for="(item, i) in fileList"
+             :key="i">
+          <img @dragstart="dragstart($event, i)"
+               class="img"
+               :src="item"
+               alt="">
         </div>
       </div>
     </div>
     <div class="btns">
-      <el-button v-if="imgList.length > 0" type="success" @click="captureStream">生成视频</el-button>
-      <el-button v-if="imgList.length > 0" type="success" @click="stopStream">停止视频</el-button>
+      <el-button v-if="imgList.length > 0"
+                 type="success"
+                 @click="captureStream">生成视频</el-button>
+      <el-button v-if="imgList.length > 0"
+                 type="success"
+                 @click="stopStream">停止视频</el-button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       ctx: null,
       recorder: null,
@@ -48,12 +75,12 @@ export default {
     }
   },
   methods: {
-    init() {
+    init () {
       this.ctx = this.$refs.cas.getContext('2d');
       this.setImgList()
       this.frame()
     },
-    frame() {
+    frame () {
       this.setWH();
       this.drawImg(this.imgList[this.index]);
       if (this.play) {
@@ -66,7 +93,7 @@ export default {
       setTimeout(this.frame, 1000 / 24)
       // requestAnimationFrame(this.frame);
     },
-    captureStream() {
+    captureStream () {
       this.play = true
       const stream = this.$refs.cas.captureStream();
       const recorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
@@ -84,17 +111,17 @@ export default {
       };
       recorder.start();
     },
-    stopStream() {
+    stopStream () {
       this.recorder.stop();
     },
-    setWH() {
+    setWH () {
       this.width = 1920
       this.height = 1080
     },
-    drawImg(img) {
+    drawImg (img) {
       this.ctx.drawImage(img, 0, 0, this.width / 2, this.height / 2);
     },
-    previewHandle(e) {
+    previewHandle (e) {
       // let list = e.target.files
       let list = e
       for (let i = 0; i < list.length; i++) {
@@ -102,15 +129,15 @@ export default {
       }
       this.init()
     },
-    setFrames(i) {
+    setFrames (i) {
       if (this.index !== i) {
         this.index = i
       }
     },
-    dragstart(e, i) {
+    dragstart (e, i) {
       this.dragIndex = i
     },
-    dragenter(e, i) {
+    dragenter (e, i) {
       if (i !== this.dragIndex) {
         const file = this.fileList[this.dragIndex];
         this.fileList.splice(this.dragIndex, 1);
@@ -120,16 +147,16 @@ export default {
         this.dragIndex = i;
       }
     },
-    fileDragover(e) {
+    fileDragover (e) {
       e.preventDefault();
     },
-    fileDrop(e) {
+    fileDrop (e) {
       e.preventDefault()
       this.previewHandle(e.dataTransfer.files)
       console.log(e.dataTransfer.files);
     },
     // 设置imgList
-    setImgList() {
+    setImgList () {
       this.imgList = []
       let img
       this.fileList.map(item => {

@@ -12,7 +12,7 @@ import store from '../store/index'
 if (process.env.NODE_ENV == 'development') {
   axios.defaults.baseURL = 'https://v1.hitokoto.cn';
 } else if (process.env.NODE_ENV == 'debug') {
-  axios.defaults.baseURL = '';
+  axios.defaults.baseURL = 'https://v1.hitokoto.cn';
 } else if (process.env.NODE_ENV == 'production') {
   axios.defaults.baseURL = 'https://v1.hitokoto.cn';
 }
