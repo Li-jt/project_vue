@@ -2,8 +2,8 @@
  * @Author: lijt
  * @Date: 2022-08-14 20:40:58
  * @LastEditors: lijt
- * @LastEditTime: 2022-10-22 16:26:06
- * @FilePath: \proxy_vue\src\views\eCharts\map.vue
+ * @LastEditTime: 2023-03-15 16:19:05
+ * @FilePath: /project_vue/src/views/eCharts/map.vue
  * @Description: 地球
 -->
 
@@ -359,7 +359,7 @@ export default {
             },
           ],
           viewControl: {
-            autoRotate: false, //是否开启视角绕物体的自动旋转查看
+            autoRotate: true, //是否开启视角绕物体的自动旋转查看
             autoRotateAfterStill: this.common.autoRotateAfterStill, //在鼠标静止操作后恢复自动旋转的时间间隔
             animation: false, // 非常重要！！！ 解决setOption时停顿一下的问题
             targetCoord: [116.46, 39.92], // 定位到北京
@@ -578,14 +578,6 @@ export default {
             //     }
             //   }
             // ],
-            // hover样式
-            emphasis: {
-              show: true,
-              itemStyle: {
-                areaColor: '#2B91B7',
-                color: '#2B91B7'
-              }
-            },
             // select样式
             select: {
               disabled: true,
@@ -594,21 +586,21 @@ export default {
                 color: '#2B91B7'
               }
             },
-            data: [
-              {
-                name: "中华人民共和国",
-                label: {
-                  show: true,
-                  color: '#ffffff', // 选中文字颜色
-                },
-                itemStyle: {
-                  areaColor: '#2B91B7',
-                  color: '#2B91B7'
-                },
-                selected: true
-                // visualMap: false,
-              },
-            ],
+            // data: [
+            //   {
+            //     name: "中华人民共和国",
+            //     label: {
+            //       show: true,
+            //       color: '#ffffff', // 选中文字颜色
+            //     },
+            //     itemStyle: {
+            //       areaColor: '#2B91B7',
+            //       color: '#2B91B7'
+            //     },
+            //     selected: true
+            //     // visualMap: false,
+            //   },
+            // ],
           },
         ],
       }
@@ -668,115 +660,80 @@ export default {
           bottom: '5%', // 距离底部
           selectedMode: 'single',
           // zlevel: 1,
-          // itemStyle: {
-          //   color: {
-          //     image: require('@/static/images/weixingditu11.png'),
-          //     repeat: 'repeat-x'
-          //   },
-          //   borderColor: '#fff',
-          //   borderWidth: 1
-          // },
           itemStyle: {
-            // areaColor: {
-            //   type: "linear-gradient",
-            //   x: 0,
-            //   y: 1200,
-            //   x2: 1000,
-            //   y2: 0,
-            //   colorStops: [
-            //     {
-            //       offset: 0,
-            //       color: "#152E6E", // 0% 处的颜色
-            //     },
-            //     {
-            //       offset: 1,
-            //       color: "#0673AD", // 50% 处的颜色
-            //     },
-            //   ],
-            //   global: true, // 缺省为 false
-            // },
-            shadowColor: 'rgb(58,115,192)',
-            shadowOffsetX: 4,
-            shadowOffsetY: 6,
-          },
-          select: {
-            label: {
-              show: true,
-              color: '#ffffff', // 选中文字颜色
+            color: {
+              image: require('@/static/images/weixingditu11.png'),
+              repeat: 'repeat-x'
             },
-            itemStyle: {
-              color: '#2B91B7',
-              areaColor: '#2B91B7', // 高亮区域颜色
-            },
+            borderColor: '#fff',
+            borderWidth: 1
           },
+          label: {
+            show: true,
+            color: '#ffff00'
+          },
+          // itemStyle: {
+          //   // areaColor: {
+          //   //   type: "linear-gradient",
+          //   //   x: 0,
+          //   //   y: 1200,
+          //   //   x2: 1000,
+          //   //   y2: 0,
+          //   //   colorStops: [
+          //   //     {
+          //   //       offset: 0,
+          //   //       color: "#152E6E", // 0% 处的颜色
+          //   //     },
+          //   //     {
+          //   //       offset: 1,
+          //   //       color: "#0673AD", // 50% 处的颜色
+          //   //     },
+          //   //   ],
+          //   //   global: true, // 缺省为 false
+          //   // },
+          //   // shadowColor: 'rgb(58,115,192)',
+          //   // shadowOffsetX: 4,
+          //   // shadowOffsetY: 6,
+          // },
+          // 高亮时状态
           emphasis: {
-            label: {
-              show: true,
-              color: '#ffffff', // 选中文字颜色
-            },
-            itemStyle: {
-              color: '#2B91B7',
-              areaColor: '#2B91B7', // 高亮区域颜色
-            },
+            focus: 'self',
           },
-          regions: [
-            {
-              name: '河南省',
-              label: {
-                show: true,
-                color: '#fff',
-              },
-              itemStyle: {
-                areaColor: '#2B91B7',
-                color: '#2B91B7'
-              }
-            }
-          ],
         },
         // 自定义提示框的内容
         tooltip: {
         },
         series: [
           // 地图效果
-          {
-            type: 'map',
-            map: 'china',
-            // zlevel: 0,
-            // itemStyle: {
-            //   areaColor: 'transparent',
-            //   normal: {
-            //     shadowColor: 'rgba(58,115,192,0.5)',
-            //     shadowOffsetX: 4,
-            //     shadowOffsetY: 6
-            //   },
-            // },
-            itemStyle: {
-              areaColor: {
-                image: require('@/static/images/weixingditu11.png'),
-                repeat: 'repeat-x'
-              },
-              borderColor: '#fff',
-            },
-            top: '5%', // 距离顶部
-            bottom: '5%', // 距离底部
-            tooltip: {
-              show: true,
-              trigger: 'item',
-              triggerOn: 'mousemove',
-              // 自定义提示框的内容
-              formatter (params) {
-                console.log('tooltip', params)
-                return (
-                  "<div>" +
-                  params.name +
-                  "<br/>" +
-                  params.value +
-                  "</div>"
-                );
-              }
-            },
-            data: this.geoData
-          },
+          // {
+          //   type: 'map',
+          //   map: 'china',
+          //   itemStyle: {
+          //     areaColor: {
+          //       image: require('@/static/images/weixingditu11.png'),
+          //       repeat: 'repeat-x'
+          //     },
+          //     borderColor: '#fff',
+          //   },
+          //   top: '5%', // 距离顶部
+          //   bottom: '5%', // 距离底部
+          //   tooltip: {
+          //     show: true,
+          //     trigger: 'item',
+          //     triggerOn: 'mousemove',
+          //     // 自定义提示框的内容
+          //     formatter (params) {
+          //       return (
+          //         "<div>" +
+          //         params.name +
+          //         "<br/>" +
+          //         params.value +
+          //         "</div>"
+          //       );
+          //     }
+          //   },
+          //   // data: this.geoData
+          // },
         ],
       })
       this.map.on("click", this.mapClick);
@@ -813,7 +770,7 @@ export default {
           }]
         })
       }
-      console.log(this.reverts);
+      console.log(this.reverts,'reverts');
     },
     // 当浏览器的大小发生变化的时候，会调用此方法来完成适配
     screenAdapter () {

@@ -23,6 +23,7 @@
     "esmify": "^2.1.1",
     "ncp": "^2.0.0",
     "nightwatch": "^2.3.5",
+    "nprogress": "^0.2.0",
     "puppeteer": "5.5.0",
     "swiper": "^5.4.5",
     "vue": "^2.6.14",
